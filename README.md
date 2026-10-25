@@ -1,4 +1,4 @@
-# Prompt Studio
+# Hawk AI
 
 A simple, self-contained prompt generator that turns a phrase, topic, or detailed brief into a polished prompt for an AI assistant.
 
@@ -13,3 +13,4 @@ Double-click `index.html` or open it in any modern browser. No installation, acc
 3. Select **Generate my prompt**, then **Copy prompt**.
 
 The generator runs entirely in the browser. It creates a well-structured prompt with a role, goal, instructions, quality standards, and output format. It does not call an AI service or send your text anywhere; paste the generated prompt into the AI tool you want to use.
+
