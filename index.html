@@ -60,6 +60,10 @@ textarea::placeholder,input::placeholder{color:#71859a}textarea:focus,select:foc
 .card>*{position:relative;z-index:1}
 @media(max-width:780px){.card:after{right:0;width:95px;height:126px;opacity:.13;filter:blur(12px)}}
 @media(prefers-reduced-motion:reduce){.card:after{animation:none!important}}
+.mark{position:relative;overflow:visible}
+.mark:after{content:"";position:absolute;z-index:2;right:-6px;top:-8px;width:15px;height:22px;pointer-events:none;transform-origin:50% 100%;clip-path:polygon(54% 0,66% 37%,100% 43%,83% 100%,22% 94%,0 57%,36% 48%);background:linear-gradient(180deg,#fff4b4 0%,#ffb24b 40%,#ff6839 72%,#d93623 100%);filter:drop-shadow(0 0 5px rgba(255,123,58,.75));animation:flameBadge 1.3s ease-in-out infinite alternate}
+@keyframes flameBadge{0%{transform:scale(.92,1) rotate(-3deg);filter:brightness(.92) drop-shadow(0 0 4px rgba(255,123,58,.62))}100%{transform:scale(1.04,1.08) rotate(3deg);filter:brightness(1.15) drop-shadow(0 0 8px rgba(255,123,58,.82))}}
+@media(prefers-reduced-motion:reduce){.mark:after{animation:none!important}}
 </style>
 </head>
 <body><main class="shell"><div class="fire-effect" aria-hidden="true"></div>
@@ -84,6 +88,7 @@ function generate(){const idea=$('idea').value.trim();if(!idea){$('idea').focus(
 $('generate').addEventListener('click',generate);$('idea').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter')generate()});$('copy').addEventListener('click',async()=>{if(!generated)return;try{await navigator.clipboard.writeText(generated)}catch(e){const t=document.createElement('textarea');t.value=generated;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1800)});$('clear').addEventListener('click',()=>{$('idea').value='';$('audience').value='';$('format').value='';$('details').value='';$('mode').value='auto';$('tone').selectedIndex=0;generated='';$('output').innerHTML='<div class="empty"><div><b>Your prompt will appear here</b>Start with any idea, even one word.</div></div>';$('copy').disabled=true;$('idea').focus()});
 if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&window.matchMedia('(hover:hover) and (pointer:fine)').matches){document.querySelectorAll('.card').forEach(card=>{card.addEventListener('pointermove',event=>{const rect=card.getBoundingClientRect(),x=(event.clientX-rect.left)/rect.width-.5,y=(event.clientY-rect.top)/rect.height-.5;card.style.setProperty('--tilt-x',`${-y*2.2}deg`);card.style.setProperty('--tilt-y',`${x*2.8}deg`)});card.addEventListener('pointerleave',()=>{card.style.setProperty('--tilt-x','0deg');card.style.setProperty('--tilt-y','0deg')})});const hero=document.querySelector('.hero');hero?.addEventListener('pointermove',event=>{const rect=hero.getBoundingClientRect();hero.style.setProperty('--orb-x',`${((event.clientX-rect.left)/rect.width-.5)*9}px`);hero.style.setProperty('--orb-y',`${((event.clientY-rect.top)/rect.height-.5)*8}px`)});hero?.addEventListener('pointerleave',()=>{hero.style.setProperty('--orb-x','0px');hero.style.setProperty('--orb-y','0px')})}
 </script></body></html>
+
 
 
 
