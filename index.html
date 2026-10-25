@@ -53,6 +53,7 @@ textarea::placeholder,input::placeholder{color:#71859a}textarea:focus,select:foc
 @keyframes flameDance{0%{transform:scaleX(.92) scaleY(.96) rotate(-2deg);filter:brightness(.9)}45%{transform:scaleX(1.04) scaleY(1.02) rotate(2deg);filter:brightness(1.12)}100%{transform:scaleX(.97) scaleY(1.06) rotate(-1deg);filter:brightness(1)}}
 @media(max-width:780px){.fire-effect{top:860px;right:-35px;width:230px;height:245px;opacity:.19;filter:blur(17px) drop-shadow(0 0 18px rgba(255,85,20,.2))}.fire-effect:before{width:170px;height:215px}.fire-effect:after{left:60px;width:100px;height:150px}.hero:after{opacity:.3}}
 @media(prefers-reduced-motion:reduce){.fire-effect:before,.fire-effect:after{animation:none!important;transform:none!important}}
+@media(max-width:780px){.fire-effect{right:0;top:520px;opacity:.24}.card{background-color:rgba(14,20,29,.89)}}
 </style>
 </head>
 <body><main class="shell"><div class="fire-effect" aria-hidden="true"></div>
@@ -77,5 +78,6 @@ function generate(){const idea=$('idea').value.trim();if(!idea){$('idea').focus(
 $('generate').addEventListener('click',generate);$('idea').addEventListener('keydown',e=>{if((e.ctrlKey||e.metaKey)&&e.key==='Enter')generate()});$('copy').addEventListener('click',async()=>{if(!generated)return;try{await navigator.clipboard.writeText(generated)}catch(e){const t=document.createElement('textarea');t.value=generated;document.body.appendChild(t);t.select();document.execCommand('copy');t.remove()}$('toast').classList.add('show');setTimeout(()=>$('toast').classList.remove('show'),1800)});$('clear').addEventListener('click',()=>{$('idea').value='';$('audience').value='';$('format').value='';$('details').value='';$('mode').value='auto';$('tone').selectedIndex=0;generated='';$('output').innerHTML='<div class="empty"><div><b>Your prompt will appear here</b>Start with any idea, even one word.</div></div>';$('copy').disabled=true;$('idea').focus()});
 if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches&&window.matchMedia('(hover:hover) and (pointer:fine)').matches){document.querySelectorAll('.card').forEach(card=>{card.addEventListener('pointermove',event=>{const rect=card.getBoundingClientRect(),x=(event.clientX-rect.left)/rect.width-.5,y=(event.clientY-rect.top)/rect.height-.5;card.style.setProperty('--tilt-x',`${-y*2.2}deg`);card.style.setProperty('--tilt-y',`${x*2.8}deg`)});card.addEventListener('pointerleave',()=>{card.style.setProperty('--tilt-x','0deg');card.style.setProperty('--tilt-y','0deg')})});const hero=document.querySelector('.hero');hero?.addEventListener('pointermove',event=>{const rect=hero.getBoundingClientRect();hero.style.setProperty('--orb-x',`${((event.clientX-rect.left)/rect.width-.5)*9}px`);hero.style.setProperty('--orb-y',`${((event.clientY-rect.top)/rect.height-.5)*8}px`)});hero?.addEventListener('pointerleave',()=>{hero.style.setProperty('--orb-x','0px');hero.style.setProperty('--orb-y','0px')})}
 </script></body></html>
+
 
 
