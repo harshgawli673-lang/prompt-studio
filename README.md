@@ -1,16 +1,27 @@
 # Hawk AI
 
-A simple, self-contained prompt generator that turns a phrase, topic, or detailed brief into a polished prompt for an AI assistant.
+Hawk AI is a mobile-friendly prompt generator with email/password accounts.
 
-## Open it
+## Use the live app
 
-Double-click `index.html` or open it in any modern browser. No installation, account, or internet connection is required.
+Open [Hawk AI](https://harshgawli673-lang.github.io/prompt-studio/) on desktop or mobile. Create an account with your name, email, and password. Email confirmation is required before the first login.
 
-## Use it
+The optional marketing checkbox is unchecked by default. A person's name, email, and consent choice are saved in the private `public.leads` table. Account passwords are managed by Supabase Auth and are never stored in this website's files.
 
-1. Enter an idea. A single word is enough to generate a useful starting prompt.
-2. Optionally choose the task, tone, audience, format, and extra context. “Choose for me” detects a likely task from the idea.
-3. Select **Generate my prompt**, then **Copy prompt**.
+## One-time Supabase setup
 
-The generator runs entirely in the browser. It creates a well-structured prompt with a role, goal, instructions, quality standards, and output format. It does not call an AI service or send your text anywhere; paste the generated prompt into the AI tool you want to use.
+For email confirmation links to return to the live GitHub Pages site, set these values in the Supabase project dashboard:
 
+1. Open **Authentication → URL Configuration**.
+2. Set **Site URL** to `https://harshgawli673-lang.github.io/prompt-studio/`.
+3. Add that same address to **Redirect URLs**, including the trailing slash.
+
+Then check the signup email confirmation template and send a test signup. Leads can be viewed in **Table Editor → public → leads**. The `marketing_opt_in` column records the checkbox choice.
+
+## Security
+
+The page uses a Supabase publishable key, which is intended for browser use. The leads table has Row Level Security enabled. Signed-in users can read only their own record; only the signup trigger creates records. Do not place a Supabase secret or service-role key in this site.
+
+## Prompt generator
+
+Describe an idea, choose a task and tone (or let Hawk AI choose), and optionally add an audience, format, or constraints. Generate and copy the result into the AI service you want to use. The generator itself does not send prompt text to Supabase.
